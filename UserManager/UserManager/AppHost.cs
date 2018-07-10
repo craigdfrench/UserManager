@@ -1,5 +1,12 @@
-﻿using Funq;
+﻿using System;
+using Funq;
+using Raven.Client.Documents;
 using ServiceStack;
+using ServiceStack.Api.Swagger;
+using ServiceStack.Auth;
+using ServiceStack.Caching;
+using ServiceStack.Razor;
+using ServiceStack.Text;
 using UserManager.ServiceInterface;
 
 namespace UserManager
@@ -19,9 +26,33 @@ namespace UserManager
         /// </summary>
         public override void Configure(Container container)
         {
-            //Config examples
-            //this.Plugins.Add(new PostmanFeature());
-            //this.Plugins.Add(new CorsFeature());
+            var myDocStore = new DocumentStore
+            {
+                Urls = new[] { "http://localhost:8080" },
+                Database = "UserManager",
+            };
+            myDocStore.Initialize();
+            container.AddSingleton<IDocumentStore>(implementationInstance: myDocStore);
+
+            this.Plugins.Add(new AuthFeature(
+                sessionFactory: () => new AuthUserSession(),
+                authProviders: new IAuthProvider[] { new UserDataCredentialsAuthProvider() }));
+
+            this.Plugins.Add(new RegistrationFeature());
+            this.Plugins.Add(new RequestLogsFeature());
+            this.Plugins.Add(new SwaggerFeature());
+            this.Plugins.Add(new RazorFormat());
+
+            container.Register<ICacheClient>(new MemoryCacheClient());
+            var userRep = new InMemoryAuthRepository();
+            container.Register<IAuthRepository>(userRep);
+
+            container.RegisterAs<LogAuthEvents, IAuthEvents>();
+
+            JsConfig<DateTime>.SerializeFn = time => new DateTime(time.Ticks, DateTimeKind.Local).ToString("o");
+            JsConfig<DateTime?>.SerializeFn =
+                time => time != null ? new DateTime(time.Value.Ticks, DateTimeKind.Local).ToString("o") : null;
+            JsConfig.DateHandler = DateHandler.ISO8601;
         }
     }
 }

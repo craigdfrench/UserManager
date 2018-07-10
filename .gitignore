@@ -259,3 +259,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/UserManager/UserManager/UserManager.A4B80F8868335D08.raven-database-topology
