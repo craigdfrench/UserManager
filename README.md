@@ -43,4 +43,4 @@ In fact the user record is not actually deleted from the database, it is marked 
 
 At this point, it may just be best to logout.
 
-![Logout](https://github.com/craigdfrench/UserManager/blob/master/documentation/delete-user.PNG?raw=true "Logout")
+![Logout](https://github.com/craigdfrench/UserManager/blob/master/documentation/logout.PNG?raw=true "Logout")
