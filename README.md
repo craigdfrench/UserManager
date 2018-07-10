@@ -1,4 +1,25 @@
+# User Manager Sample Application
+
+  * User Manager is a single page app with CRUD for users and with live activity logging. 
+  * Uses REST backend. 
+  * Tech stack is C#, .NET, ASP.NET, ServiceStack, RavenDB, Boostrap, and jQuery.
+  * Frontend UI built on top of [Service Stack sample application EmailContacts](https://github.com/ServiceStackApps/EmailContacts)
+  
+1. [Application Walkthrough](#application-walkthrough)
+2. [Design Notes](#design-notes)
+3. [Developer Reflection](#developer-reflection)
+
 The base frontend design reuses https://github.com/ServiceStackApps/EmailContacts and modified for use in this application. 
+
+<a id="AppWalkthrough">
+  
+## Application Walkthrough
+
+So you want to manage some users?  You have come to the right place. 
+
+After performing a git clone to your machine, you can compile and run the project by using the startme.bat file which uses a previously installed version of Visual Studio 2017 Professional Version - may also work for other versions.
+
+After the code is compiled and run, chrome browser will be launched and you will see the the application - once it loads. 
 
 When started up with a blank database, the user is prompted to create an initial user database.  
 ![Create initial user database](https://github.com/craigdfrench/UserManager/blob/master/documentation/populate.PNG?raw=true "Create initial user database")
@@ -44,3 +65,15 @@ In fact the user record is not actually deleted from the database, it is marked 
 At this point, it may just be best to logout.
 
 ![Logout](https://github.com/craigdfrench/UserManager/blob/master/documentation/logout.PNG?raw=true "Logout")
+
+# Design Notes 
+
+
+
+
+
+
+
+
+
+# Developer Reflection
