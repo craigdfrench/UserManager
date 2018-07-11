@@ -46,7 +46,7 @@ namespace UserManager
                 // No, then let's create it. 
                 myDocStore.Maintenance.Server.Send(
                     new CreateDatabaseOperation(
-                        new DatabaseRecord("databaseName")
+                        new DatabaseRecord(databaseName)
                 ));
             }
             container.AddSingleton<IDocumentStore>(implementationInstance: myDocStore);
