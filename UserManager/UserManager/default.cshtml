@@ -468,6 +468,8 @@
                 $("#form-edituser .form-control").val('');
                 $("#global-alert").html('Updated User:' + user.FirstName + ' ' + user.LastName).show();
                 setTimeout(refreshAllData, 100);
+                $("#edit-user.remove-none").css('display', 'none');
+                $("#edit-user.remove-visibility").css('visibility', 'hidden');
             }
         });
 
